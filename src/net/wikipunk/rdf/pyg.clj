@@ -150,10 +150,7 @@
   "The fused graph attention operator from the\n    `\"Understanding GNN Computational Graph: A Coordinated Computation, IO, and\n    Memory Perspective\"\n    <https://proceedings.mlsys.org/paper/2022/file/\n    9a1158154dfa42caddbd0694a4e9bdc8-Paper.pdf>`_ paper."
   {:db/ident        :pyg/FusedGATConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf [:pyg/GATConv
-                     :pyg/MessagePassing
-                     :torch/Module
-                     :py/Object]})
+   :rdfs/subClassOf :pyg/GATConv})
 
 (def GATConv
   "The graph attentional operator from the `\"Graph Attention Networks\"\n    <https://arxiv.org/abs/1710.10903>`_ paper"
@@ -274,12 +271,6 @@
   {:db/ident        :pyg/MFConv,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :pyg/MessagePassing})
-
-(def MessagePassing
-  "Base class for creating message passing layers of the form"
-  {:db/ident        :pyg/MessagePassing,
-   :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
 
 (def NNConv
   "The continuous kernel-based convolutional operator from the\n    `\"Neural Message Passing for Quantum Chemistry\"\n    <https://arxiv.org/abs/1704.01212>`_ paper.\n    This convolution is also known as the edge-conditioned convolution from the\n    `\"Dynamic Edge-Conditioned Filters in Convolutional Neural Networks on\n    Graphs\" <https://arxiv.org/abs/1704.02901>`_ paper (see\n    :class:`torch_geometric.nn.conv.ECConv` for an alias):"
@@ -481,10 +472,7 @@
   "An aggregation operator that returns the feature-wise median of a set.\n    That is, for every feature :math:`d`, it computes"
   {:db/ident        :pyg/MedianAggregation,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf [:pyg/QuantileAggregation
-                     :pyg/Aggregation
-                     :torch/Module
-                     :py/Object]})
+   :rdfs/subClassOf :pyg/QuantileAggregation})
 
 (def MinAggregation
   "An aggregation operator that takes the feature-wise minimum across a\n    set of elements"
@@ -582,10 +570,7 @@
   "Applies instance normalization over each individual example in a batch\n    of node features as described in the `\"Instance Normalization: The Missing\n    Ingredient for Fast Stylization\" <https://arxiv.org/abs/1607.08022>`_\n    paper"
   {:db/ident        :pyg/InstanceNorm,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf [:pyg/_InstanceNorm
-                     :pyg/_NormBase
-                     :torch/Module
-                     :py/Object]})
+   :rdfs/subClassOf :torch/Module})
 
 (def LayerNorm
   "Applies layer normalization over each individual example in a batch\n    of node features as described in the `\"Layer Normalization\"\n    <https://arxiv.org/abs/1607.06450>`_ paper"
