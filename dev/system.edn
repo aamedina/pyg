@@ -1,0 +1,9 @@
+{:vocab  {:sc/create-fn net.wikipunk.rdf/map->UniversalTranslator
+          :sc/refs      [:pyg]
+          :init-ns      net.wikipunk.temple.init
+          :ns-prefix    "net.wikipunk.rdf."
+          :boot         [net.wikipunk.pyg.boot/pyg]
+          :config       {:xtdb.lucene/lucene-store
+                         {:db-dir ".vocab/lucene"}}}
+ :openai {:sc/create-fn net.wikipunk.openai/map->Client}
+ :pyg    {:sc/create-fn net.wikipunk.pyg/map->PyG}}
