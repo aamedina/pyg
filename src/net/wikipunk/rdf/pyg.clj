@@ -193,7 +193,7 @@
 
 (def DataListLoader
   "A data loader which batches data objects from a :pyg/Dataset to a
-  Python list.  Data objects can be either of type :class:`:pyg/Data`
+  Python list.  Data objects can be either of type :`:pyg/Data`
   or `:pyg/HeteroData`."
   {:db/ident        :pyg/DataListLoader,
    :rdf/type        :owl/Class,
@@ -1649,3 +1649,365 @@
   {:db/ident        :pyg/DataParallel
    :rdf/type        :owl/Class
    :rdfs/subClassOf :torch/DataParallel})
+
+;; torch_geometric.transforms
+
+(def BaseTransform
+  "An abstract base class for writing transforms."
+  {:db/ident        :pyg/BaseTransform,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :py/Object})
+
+(def AddLaplacianEigenvectorPE
+  "Adds the Laplacian eigenvector positional encoding from the    `\"Benchmarking Graph Neural Networks\" <https://arxiv.org/abs/2003.00982>`_    paper to the given graph    (functional name: :`add_laplacian_eigenvector_pe`)."
+  {:db/ident        :pyg/AddLaplacianEigenvectorPE,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def AddMetaPaths
+  "Adds additional edge types to a    :`:pyg/HeteroData` object between the source node    type and the destination node type of a given :`metapath`, as described    in the `\"Heterogenous Graph Attention Networks\"    <https://arxiv.org/abs/1903.07293>`_ paper    (functional name: :`add_metapaths`).    Meta-path based neighbors can exploit different aspects of structure    information in heterogeneous graphs.    Formally, a metapath is a path of the form"
+  {:db/ident        :pyg/AddMetaPaths,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def AddRandomMetaPaths
+  "Adds additional edge types similar to :`AddMetaPaths`.    The key difference is that the added edge type is given by    multiple random walks along the metapath.    One might want to increase the number of random walks    via :`walks_per_node` to achieve competitive performance with    :`AddMetaPaths`."
+  {:db/ident        :pyg/AddRandomMetaPaths,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def AddRandomWalkPE
+  "Adds the random walk positional encoding from the `\"Graph Neural    Networks with Learnable Structural and Positional Representations\"    <https://arxiv.org/abs/2110.07875>`_ paper to the given graph    (functional name: :`add_random_walk_pe`)."
+  {:db/ident        :pyg/AddRandomWalkPE,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def AddSelfLoops
+  "Adds self-loops to the given homogeneous or heterogeneous graph    (functional name: :`add_self_loops`)."
+  {:db/ident        :pyg/AddSelfLoops,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def Cartesian
+  "Saves the relative Cartesian coordinates of linked nodes in its edge    attributes (functional name: :`cartesian`)."
+  {:db/ident        :pyg/Cartesian,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def Center
+  "Centers node positions :`pos` around the origin    (functional name: :`center`)."
+  {:db/ident        :pyg/Center,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def Compose
+  "Composes several transforms together."
+  {:db/ident        :pyg/Compose,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def Constant
+  "Appends a constant value to each node feature :`x`    (functional name: :`constant`)."
+  {:db/ident        :pyg/Constant,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def Delaunay
+  "Computes the delaunay triangulation of a set of points    (functional name: :`delaunay`)."
+  {:db/ident        :pyg/Delaunay,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def Distance
+  "Saves the Euclidean distance of linked nodes in its edge attributes    (functional name: :`distance`)."
+  {:db/ident        :pyg/Distance,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def FaceToEdge
+  "Converts mesh faces :`[3, num_faces]` to edge indices    :`[2, num_edges]` (functional name: :`face_to_edge`)."
+  {:db/ident        :pyg/FaceToEdge,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def FeaturePropagation
+  "The feature propagation operator from the `\"On the Unreasonable    Effectiveness of Feature propagation in Learning on Graphs with Missing    Node Features\" <https://arxiv.org/abs/2111.12128>`_ paper    (functional name: :`feature_propagation`)"
+  {:db/ident        :pyg/FeaturePropagation,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def FixedPoints
+  "Samples a fixed number of :`num` points and features from a point    cloud (functional name: :`fixed_points`)."
+  {:db/ident        :pyg/FixedPoints,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def GCNNorm
+  "Applies the GCN normalization from the `\"Semi-supervised Classification    with Graph Convolutional Networks\" <https://arxiv.org/abs/1609.02907>`_    paper (functional name: :`gcn_norm`)."
+  {:db/ident        :pyg/GCNNorm,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def GDC
+  "Processes the graph via Graph Diffusion Convolution (GDC) from the    `\"Diffusion Improves Graph Learning\" <https://www.kdd.in.tum.de/gdc>`_    paper (functional name: :`gdc`)."
+  {:db/ident        :pyg/GDC,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def GenerateMeshNormals
+  "Generate normal vectors for each mesh node based on neighboring    faces (functional name: :`generate_mesh_normals`)."
+  {:db/ident        :pyg/GenerateMeshNormals,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def GridSampling
+  "Clusters points into voxels with size :attr:`size`    (functional name: :`grid_sampling`).    Each cluster returned is a new point based on the mean of all points    inside the given cluster."
+  {:db/ident        :pyg/GridSampling,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def IndexToMask
+  "Converts indices to a mask representation    (functional name: :`index_to_mask`)."
+  {:db/ident        :pyg/IndexToMask,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def KNNGraph
+  "Creates a k-NN graph based on node positions :`pos`    (functional name: :`knn_graph`)."
+  {:db/ident        :pyg/KNNGraph,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def LaplacianLambdaMax
+  "Computes the highest eigenvalue of the graph Laplacian given by    :meth:`torch_geometric.utils.get_laplacian`    (functional name: :`laplacian_lambda_max`)."
+  {:db/ident        :pyg/LaplacianLambdaMax,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def LargestConnectedComponents
+  "Selects the subgraph that corresponds to the    largest connected components in the graph    (functional name: :`largest_connected_components`)."
+  {:db/ident        :pyg/LargestConnectedComponents,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def LineGraph
+  "Converts a graph to its corresponding line-graph    (functional name: :`line_graph`):"
+  {:db/ident        :pyg/LineGraph,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def LinearTransformation
+  "Transforms node positions :`pos` with a square transformation    matrix computed offline (functional name: :`linear_transformation`)"
+  {:db/ident        :pyg/LinearTransformation,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def LocalCartesian
+  "Saves the relative Cartesian coordinates of linked nodes in its edge    attributes (functional name: :`local_cartesian`). Each coordinate gets    *neighborhood-normalized* to the interval :math:`{[0, 1]}^D`."
+  {:db/ident        :pyg/LocalCartesian,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def LocalDegreeProfile
+  "Appends the Local Degree Profile (LDP) from the `\"A Simple yet    Effective Baseline for Non-attribute Graph Classification\"    <https://arxiv.org/abs/1811.03508>`_ paper    (functional name: :`local_degree_profile`)"
+  {:db/ident        :pyg/LocalDegreeProfile,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def MaskToIndex
+  "Converts a mask to an index representation    (functional name: :`mask_to_index`)."
+  {:db/ident        :pyg/MaskToIndex,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def NormalizeFeatures
+  "Row-normalizes the attributes given in :`attrs` to sum-up to one    (functional name: :`normalize_features`)."
+  {:db/ident        :pyg/NormalizeFeatures,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def NormalizeRotation
+  "Rotates all points according to the eigenvectors of the point cloud    (functional name: :`normalize_rotation`).    If the data additionally holds normals saved in :`data.normal`, these    will be rotated accordingly."
+  {:db/ident        :pyg/NormalizeRotation,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def NormalizeScale
+  "Centers and normalizes node positions to the interval :math:`(-1, 1)`    (functional name: :`normalize_scale`)."
+  {:db/ident        :pyg/NormalizeScale,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def OneHotDegree
+  "Adds the node degree as one hot encodings to the node features    (functional name: :`one_hot_degree`)."
+  {:db/ident        :pyg/OneHotDegree,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def PointPairFeatures
+  "Computes the rotation-invariant Point Pair Features    (functional name: :`point_pair_features`)"
+  {:db/ident        :pyg/PointPairFeatures,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def Polar
+  "Saves the polar coordinates of linked nodes in its edge attributes    (functional name: :`polar`)."
+  {:db/ident        :pyg/Polar,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def RadiusGraph
+  "Creates edges based on node positions :`pos` to all points within a    given distance (functional name: :`radius_graph`)."
+  {:db/ident        :pyg/RadiusGraph,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def RandomFlip
+  "Flips node positions along a given axis randomly with a given    probability (functional name: :`random_flip`)."
+  {:db/ident        :pyg/RandomFlip,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def RandomJitter
+  "Translates node positions by randomly sampled translation values    within a given interval (functional name: :`random_jitter`).    In contrast to other random transformations,    translation is applied separately at each position"
+  {:db/ident        :pyg/RandomJitter,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def RandomLinkSplit
+  "Performs an edge-level random split into training, validation and test    sets of a :`:pyg/Data` or a    :`:pyg/HeteroData` object    (functional name: :`random_link_split`).    The split is performed such that the training split does not include edges    in validation and test splits; and the validation split does not include    edges in the test split."
+  {:db/ident        :pyg/RandomLinkSplit,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def RandomNodeSplit
+  "Performs a node-level random split by adding :`train_mask`,    :`val_mask` and :`test_mask` attributes to the    :`:pyg/Data` or    :`:pyg/HeteroData` object    (functional name: :`random_node_split`)."
+  {:db/ident        :pyg/RandomNodeSplit,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def RandomRotate
+  "Rotates node positions around a specific axis by a randomly sampled    factor within a given interval (functional name: :`random_rotate`)."
+  {:db/ident        :pyg/RandomRotate,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def RandomScale
+  "Scales node positions by a randomly sampled factor :math:`s` within a    given interval, *e.g.*, resulting in the transformation matrix    (functional name: :`random_scale`)"
+  {:db/ident        :pyg/RandomScale,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def RandomShear
+  "Shears node positions by randomly sampled factors :math:`s` within a    given interval, *e.g.*, resulting in the transformation matrix    (functional name: :`random_shear`)"
+  {:db/ident        :pyg/RandomShear,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def RemoveIsolatedNodes
+  "Removes isolated nodes from the graph    (functional name: :`remove_isolated_nodes`)."
+  {:db/ident        :pyg/RemoveIsolatedNodes,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def RemoveTrainingClasses
+  "Removes classes from the node-level training set as given by    :`data.train_mask`, *e.g.*, in order to get a zero-shot label scenario    (functional name: :`remove_training_classes`)."
+  {:db/ident        :pyg/RemoveTrainingClasses,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def RootedSubgraph
+  "Base class for implementing rooted subgraph transformations."
+  {:db/ident        :pyg/RootedSubgraph,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def RootedSubgraphData
+  "A data object describing a homogeneous graph together with each node's\n    rooted subgraph. It contains several additional properties that hold the\n    information to map to batch of every node's rooted subgraph:"
+  {:db/ident        :pyg/RootedSubgraphData,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/Data})
+
+(def RootedEgoNets
+  "Collects rooted :math:`k`-hop EgoNets for each node in the graph, as    described in the `\"From Stars to Subgraphs: Uplifting Any GNN with Local    Structure Awareness\" <https://arxiv.org/abs/2110.03753>`_ paper."
+  {:db/ident        :pyg/RootedEgoNets,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/RootedSubgraph})
+
+(def RootedRWSubgraph
+  "Collects rooted random-walk based subgraphs for each node in the graph,    as described in the `\"From Stars to Subgraphs: Uplifting Any GNN with Local    Structure Awareness\" <https://arxiv.org/abs/2110.03753>`_ paper."
+  {:db/ident        :pyg/RootedRWSubgraph,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/RootedSubgraph})
+
+(def SIGN
+  "The Scalable Inception Graph Neural Network module (SIGN) from the    `\"SIGN: Scalable Inception Graph Neural Networks\"    <https://arxiv.org/abs/2004.11198>`_ paper (functional name: :`sign`),    which precomputes the fixed representations"
+  {:db/ident        :pyg/SIGN,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def SVDFeatureReduction
+  "Dimensionality reduction of node features via Singular Value    Decomposition (SVD) (functional name: :`svd_feature_reduction`)."
+  {:db/ident        :pyg/SVDFeatureReduction,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def SamplePoints
+  "Uniformly samples :`num` points on the mesh faces according to    their face area (functional name: :`sample_points`)."
+  {:db/ident        :pyg/SamplePoints,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def Spherical
+  "Saves the spherical coordinates of linked nodes in its edge attributes    (functional name: :`spherical`)."
+  {:db/ident        :pyg/Spherical,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def TargetIndegree
+  "Saves the globally normalized degree of target nodes    (functional name: :`target_indegree`)"
+  {:db/ident        :pyg/TargetIndegree,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def ToDense
+  "Converts a sparse adjacency matrix to a dense adjacency matrix with    shape :`[num_nodes, num_nodes, *]` (functional name: :`to_dense`)."
+  {:db/ident        :pyg/ToDense,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def ToDevice
+  "Performs tensor device conversion, either for all attributes of the    :`:pyg/Data` object or only the ones given by    :`attrs` (functional name: :`to_device`)."
+  {:db/ident        :pyg/ToDevice,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def ToSLIC
+  "Converts an image to a superpixel representation using the    :meth:`skimage.segmentation.slic` algorithm, resulting in a    :`:pyg/Data` object holding the centroids of    superpixels in :`pos` and their mean color in :`x`    (functional name: :`to_slic`)."
+  {:db/ident        :pyg/ToSLIC,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def ToSparseTensor
+  "Converts the :`edge_index` attributes of a homogeneous or    heterogeneous data object into a (transposed):`torch_sparse.SparseTensor` type with key :`adj_t`    (functional name: :`to_sparse_tensor`)."
+  {:db/ident        :pyg/ToSparseTensor,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def ToUndirected
+  "Converts a homogeneous or heterogeneous graph to an undirected graph    such that :math:`(j,i) \\in \\mathcal{E}` for every edge    :math:`(i,j) \\in \\mathcal{E}` (functional name: :`to_undirected`).    In heterogeneous graphs, will add \"reverse\" connections for *all* existing    edge types."
+  {:db/ident        :pyg/ToUndirected,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def TwoHop
+  "Adds the two hop edges to the edge indices    (functional name: :`two_hop`)."
+  {:db/ident        :pyg/TwoHop,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
+
+(def VirtualNode
+  "Appends a virtual node to the given homogeneous graph that is connected    to all other nodes, as described in the `\"Neural Message Passing for    Quantum Chemistry\" <https://arxiv.org/abs/1704.01212>`_ paper    (functional name: :`virtual_node`).    The virtual node serves as a global scratch space that each node both reads    from and writes to in every step of message passing.    This allows information to travel long distances during the propagation    phase."
+  {:db/ident        :pyg/VirtualNode,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseTransform})
