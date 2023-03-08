@@ -225,7 +225,7 @@
 
 (def GraphSAINTNodeSampler
   "The GraphSAINT node sampler class (see
-  class:`:pyg//GraphSAINTSampler`)."
+  class:`:pyg/GraphSAINTSampler`)."
   {:db/ident        :pyg/GraphSAINTNodeSampler,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :pyg/GraphSAINTSampler})
@@ -339,6 +339,29 @@
   {:db/ident        :pyg/TemporalDataLoader,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :pyg/DataLoader})
+
+;; torch_geometric.sampler
+
+(def BaseSampler
+  "A base class that initializes a graph sampler and provides
+  `sample_from_nodes` and`sample_from_edges` routines."
+  {:db/ident        :pyg/BaseSampler,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :py/Object})
+
+(def HGTSampler
+  "An implementation of an in-memory heterogeneous layer-wise sampler
+  user by `:pyg/HGTLoader`."
+  {:db/ident        :pyg/HGTSampler,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseSampler})
+
+(def NeighborSampler
+  "An implementation of an in-memory (heterogeneous) neighbor sampler
+  used by `:pyg/NeighborLoader`."
+  {:db/ident        :pyg/NeighborSampler,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/BaseSampler})
 
 ;; torch_geometric.nn
 

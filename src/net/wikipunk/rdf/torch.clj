@@ -89,3 +89,10 @@
   {:db/ident        :torch/WeightedRandomSampler
    :rdf/type        :owl/Class
    :rdfs/subClassOf :torch/Sampler})
+
+(def Tensor
+  "A Tensor is a multi-dimensional matrix containing elements of a
+  single data type."
+  {:db/ident        :torch/Tensor,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :py/Object})
