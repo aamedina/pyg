@@ -15,7 +15,7 @@
    :rdf/type        :owl/Class
    :rdfs/subClassOf :py/Class})
 
-(def Enum
+(def EnumClass
   "The class of Python enums."
   {:db/ident        :py/Enum
    :rdf/type        :owl/Class
