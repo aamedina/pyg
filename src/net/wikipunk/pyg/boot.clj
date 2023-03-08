@@ -15,3 +15,8 @@
   {:rdf/type    :rdfa/PrefixMapping
    :rdfa/uri    "https://wikipunk.net/pyg/"
    :rdfa/prefix "pyg"})
+
+(def pyg.datasets
+  {:rdf/type    :rdfa/PrefixMapping
+   :rdfa/uri    "https://wikipunk.net/pyg/datasets/"
+   :rdfa/prefix "pyg.datasets"})
