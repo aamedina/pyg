@@ -161,6 +161,187 @@
    :rdfs/subClassOf :pyg/CastMixin
    :rdfs/seeAlso    "https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.data.EdgeAttr.html#torch_geometric.data.EdgeAttr"})
 
+;; torch_geometric.loader
+
+(def DataLoader
+  "A data loader which merges data objects from a
+  :pyg/Dataset to a mini-batch. Data objects can be
+  either of type :pyg/Data or :pyg/HeteroData."
+  {:db/ident        :pyg/DataLoader
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :torch/DataLoader
+   :rdfs/seeAlso    "https://pytorch-geometric.readthedocs.io/en/latest/modules/loader.html#torch_geometric.loader.DataLoader"})
+
+(def ClusterData
+  "Clusters/partitions a graph data object into multiple subgraphs, as
+  motivated by the `\"Cluster-GCN: An Efficient Algorithm for Training
+  Deep and Large Graph Convolutional Networks\" paper."
+  {:db/ident        :pyg/ClusterData,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/Dataset
+   :rdfs/seeAlso    "https://arxiv.org/abs/1905.07953"})
+
+(def ClusterLoader
+  "The data loader scheme from the `\"Cluster-GCN: An Efficient
+  Algorithm for Training Deep and Large Graph Convolutional Networks\"
+  paper which merges partioned subgraphs and their between-cluster
+  links from a large-scale graph data object to form a mini-batch."
+  {:db/ident        :pyg/ClusterLoader,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/DataLoader
+   :rdfs/seeAlso    "https://arxiv.org/abs/1905.07953"})
+
+(def DataListLoader
+  "A data loader which batches data objects from a :pyg/Dataset to a
+  Python list.  Data objects can be either of type :class:`:pyg/Data`
+  or `:pyg/HeteroData`."
+  {:db/ident        :pyg/DataListLoader,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/DataLoader})
+
+(def DenseDataLoader
+  "A data loader which batches data objects from a `:pyg/Dataset` to a
+  `:pyg/Batch` object by stacking all attributes in a new dimension."
+  {:db/ident        :pyg/DenseDataLoader,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/DataLoader})
+
+(def DynamicBatchSampler
+  "Dynamically adds samples to a mini-batch up to a maximum size
+  (either based on number of nodes or number of edges). When data
+  samples have a wide range in sizes, specifying a mini-batch size in
+  terms of number of samples is not ideal and can cause CUDA OOM
+  errors."
+  {:db/ident        :pyg/DynamicBatchSampler,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :torch/Sampler})
+
+(def GraphSAINTEdgeSampler
+  "The GraphSAINT edge sampler class (see
+  class:`:pyg/GraphSAINTSampler`)."
+  {:db/ident        :pyg/GraphSAINTEdgeSampler,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/GraphSAINTSampler})
+
+(def GraphSAINTNodeSampler
+  "The GraphSAINT node sampler class (see
+  class:`:pyg//GraphSAINTSampler`)."
+  {:db/ident        :pyg/GraphSAINTNodeSampler,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/GraphSAINTSampler})
+
+(def GraphSAINTRandomWalkSampler
+  "The GraphSAINT random walk sampler class (see
+  class:`:pyg/GraphSAINTSampler`)."
+  {:db/ident        :pyg/GraphSAINTRandomWalkSampler,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/GraphSAINTSampler})
+
+(def GraphSAINTSampler
+  "The GraphSAINT sampler base class from the `\"GraphSAINT: Graph
+  Sampling Based Inductive Learning Method\" paper.  Given a graph in
+  a `data` object, this class samples nodes and constructs subgraphs
+  that can be processed in a mini-batch fashion.  Normalization
+  coefficients for each mini-batch are given via `node_norm` and
+  `edge_norm` data attributes."
+  {:db/ident        :pyg/GraphSAINTSampler,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/DataLoader
+   :rdfs/seeAlso    "https://arxiv.org/abs/1907.04931"})
+
+(def HGTLoader
+  "The Heterogeneous Graph Sampler from the `\"Heterogeneous Graph
+  Transformer\" paper.  This loader allows for mini-batch training of
+  GNNs on large-scale graphs where full-batch training is not
+  feasible."
+  {:db/ident        :pyg/HGTLoader,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/NodeLoader
+   :rdfs/seeAlso    "https://arxiv.org/abs/2003.01332"})
+
+(def ImbalancedSampler
+  "A weighted random sampler that randomly samples elements according
+  to class distribution.  As such, it will either remove samples from
+  the majority class (under-sampling) or add more examples from the
+  minority class (over-sampling)."
+  {:db/ident        :pyg/ImbalancedSampler,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :torch/WeightedRandomSampler})
+
+(def LinkLoader
+  "A data loader that performs neighbor sampling from link
+  information, using a generic class:`:pyg/BaseSampler` implementation
+  that defines a `sample_from_edges` function and is supported on the
+  provided input `data` object."
+  {:db/ident        :pyg/LinkLoader,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/DataLoader})
+
+(def LinkNeighborLoader
+  "A link-based data loader derived as an extension of the node-based
+  class:`:pyg/NeighborLoader`.  This loader allows for mini-batch
+  training of GNNs on large-scale graphs where full-batch training is
+  not feasible."
+  {:db/ident        :pyg/LinkNeighborLoader,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/LinkLoader})
+
+(def NeighborLoader
+  "A data loader that performs neighbor sampling as introduced in the
+  `\"Inductive Representation Learning on Large Graphs\" paper.  This
+  loader allows for mini-batch training of GNNs on large-scale graphs
+  where full-batch training is not feasible."
+  {:db/ident        :pyg/NeighborLoader,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/NodeLoader
+   :rdfs/seeAlso    "https://arxiv.org/abs/1706.02216"})
+
+(def NeighborSampler
+  "The neighbor sampler from the `\"Inductive Representation Learning
+  on Large Graphs\" paper, which allows for mini-batch training of
+  GNNs on large-scale graphs where full-batch training is not
+  feasible."
+  {:db/ident        :pyg/NeighborSampler,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/DataLoader
+   :rdfs/seeAlso    "https://arxiv.org/abs/1706.02216"})
+
+(def NodeLoader
+  "A data loader that performs neighbor sampling from node
+  information, using a generic class:`:pyg/BaseSampler` implementation
+  that defines a `sample_from_nodes` function and is supported on the
+  provided input `data` object."
+  {:db/ident        :pyg/NodeLoader,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/DataLoader})
+
+(def RandomNodeLoader
+  "A data loader that randomly samples nodes within a graph and
+  returns their induced subgraph."
+  {:db/ident        :pyg/RandomNodeLoader,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/DataLoader})
+
+(def ShaDowKHopSampler
+  "The ShaDow :math:`k`-hop sampler from the `\"Decoupling the Depth
+  and Scope of Graph Neural Networks\" paper.  Given a graph in a
+  `data` object, the sampler will create shallow, localized
+  subgraphs. A deep GNN on this local graph then smooths the
+  informative local signals."
+  {:db/ident        :pyg/ShaDowKHopSampler,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/DataLoader
+   :rdfs/seeAlso    "https://arxiv.org/abs/2201.07858"})
+
+(def TemporalDataLoader
+  "A data loader which merges succesive events of a
+  class:`:pyg/TemporalData` to a mini-batch."
+  {:db/ident        :pyg/TemporalDataLoader,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/DataLoader})
+
+;; torch_geometric.nn
+
 ;; Convolutional Layers
 
 (def SimpleConv
