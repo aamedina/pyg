@@ -56,3 +56,36 @@
    :rdf/type        :owl/Class
    :rdfs/subClassOf :py/Object
    :rdfs/seeAlso    "https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader"})
+
+(def Sampler
+  "Base class for all Samplers."
+  {:db/ident        :torch/Sampler
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :py/Object
+   :rdfs/seeAlso    "https://pytorch.org/docs/stable/data.html#torch.utils.data.Sampler"})
+
+(def SequentialSampler
+  "Samples elements sequentially, always in the same order."
+  {:db/ident        :torch/SequentialSampler
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :torch/Sampler})
+
+(def RandomSampler
+  "Samples elements randomly. If without replacement, then sample from
+  a shuffled dataset. If with replacement, then user can specify
+  num_samples to draw."
+  {:db/ident        :torch/RandomSampler
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :torch/Sampler})
+
+(def SubsetRandomSampler
+  "Samples elements randomly from a given list of indices, without replacement."
+  {:db/ident        :torch/SubsetRandomSampler
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :torch/Sampler})
+
+(def WeightedRandomSampler
+  "Samples elements from [0,..,len(weights)-1] with given probabilities (weights)."
+  {:db/ident        :torch/WeightedRandomSampler
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :torch/Sampler})
