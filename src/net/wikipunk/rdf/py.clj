@@ -26,3 +26,9 @@
   {:db/ident        :py/Exception
    :rdf/type        :owl/Class
    :rdfs/subClassOf :py/Object})
+
+(def Function
+  "The class of Python functions."
+  {:db/ident        :py/Function
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :py/Object})
