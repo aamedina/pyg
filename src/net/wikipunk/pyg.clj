@@ -1,7 +1,7 @@
 (ns net.wikipunk.pyg
   (:require
    [com.stuartsierra.component :as com]
-   [net.wikipunk.rdf.pyg]))
+   [net.wikipunk.pyg.boot]))
 
 (defrecord PyG []
   com/Lifecycle

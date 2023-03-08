@@ -14,3 +14,15 @@
   {:db/ident        :py/Object
    :rdf/type        :owl/Class
    :rdfs/subClassOf :py/Class})
+
+(def Enum
+  "The class of Python enums."
+  {:db/ident        :py/Enum
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :py/Object})
+
+(def ExceptionClass
+  "The class of Python exceptions."
+  {:db/ident        :py/Exception
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :py/Object})
