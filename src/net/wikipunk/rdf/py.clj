@@ -32,3 +32,25 @@
   {:db/ident        :py/Function
    :rdf/type        :owl/Class
    :rdfs/subClassOf :py/Object})
+
+(def Sized
+  "The class of Sized collections."
+  {:db/ident        :py/Sized
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :py/Object})
+
+(def Iterable
+  "An iterable object is an object that implements __iter__, which is
+  expected to return an iterator object. "
+  {:db/ident        :py/Iterable
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :py/Object})
+
+(def Iterator
+  "An iterator object implements __next__, which is expected to return
+  the next element of the iterable object that returned it, and to
+  raise a StopIteration exception when no more elements are
+  available."
+  {:db/ident        :py/Iterator
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :py/Object})
