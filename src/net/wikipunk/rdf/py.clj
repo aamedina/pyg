@@ -39,7 +39,7 @@
    :rdf/type        :owl/Class
    :rdfs/subClassOf :py/Object})
 
-(def Iterable
+(def IterableClass
   "An iterable object is an object that implements __iter__, which is
   expected to return an iterator object. "
   {:db/ident        :py/Iterable
