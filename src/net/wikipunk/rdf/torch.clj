@@ -30,3 +30,29 @@
    :rdf/type        :owl/Class
    :rdfs/subClassOf :torch/Module
    :rdfs/seeAlso    "https://pytorch.org/docs/stable/generated/torch.nn.DataParallel.html"})
+
+(def Dataset
+  "An abstract class representing a Dataset.
+
+  All datasets that represent a map from keys to data samples should
+  subclass it. All subclasses should overwrite __getitem__(),
+  supporting fetching a data sample for a given key. Subclasses could
+  also optionally overwrite __len__(), which is expected to return the
+  size of the dataset by many Sampler implementations and the default
+  options of DataLoader."
+  {:db/ident        :torch/Dataset
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :py/Object
+   :rdfs/seeAlso    "https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset"})
+
+(def DataLoader
+  "Data loader. Combines a dataset and a sampler, and provides an
+  iterable over the given dataset.
+
+  The DataLoader supports both map-style and iterable-style datasets
+  with single or multi-process loading, customizing loading order and
+  optional automatic batching (collation) and memory pinning."
+  {:db/ident        :torch/DataLoader
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :py/Object
+   :rdfs/seeAlso    "https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader"})

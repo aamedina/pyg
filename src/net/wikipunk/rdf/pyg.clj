@@ -44,6 +44,123 @@
    :rdfs/subClassOf :py/Object
    :rdfs/seeAlso    "https://pytorch-geometric.readthedocs.io/en/latest/modules/nn.html#torch_geometric.nn.dense.HeteroLinear"})
 
+;; torch_geometric.data
+
+(def BaseData
+  "Abstract base class for PyG data."
+  {:db/ident        :pyg/BaseData
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :py/Object})
+
+(def FeatureStore
+  "An abstract base class to access features from a remote feature
+  store."
+  {:db/ident        :pyg/FeatureStore
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :py/Object})
+
+(def GraphStore
+  "An abstract base class to access edges from a remote graph store."
+  {:db/ident        :pyg/GraphStore
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :py/Object})
+
+(def Data
+  "A data object describing a homogeneous graph. The data object can
+  hold node-level, link-level and graph-level attributes. In general,
+  Data tries to mimic the behavior of a regular Python dictionary. In
+  addition, it provides useful functionality for analyzing graph
+  structures, and provides basic PyTorch tensor functionalities."
+  {:db/ident        :pyg/Data
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf [:pyg/BaseData :pyg/FeatureStore :pyg/GraphStore]
+   :rdfs/seeAlso    "https://pytorch-geometric.readthedocs.io/en/latest/get_started/introduction.html#data-handling-of-graphs"})
+
+(def HeteroData
+  "A data object describing a heterogeneous graph, holding multiple
+  node and/or edge types in disjunct storage objects. Storage objects
+  can hold either node-level, link-level or graph-level attributes. In
+  general, HeteroData tries to mimic the behavior of a regular nested
+  Python dictionary. In addition, it provides useful functionality for
+  analyzing graph structures, and provides basic PyTorch tensor
+  functionalities."
+  {:db/ident        :pyg/HeteroData
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf [:pyg/BaseData :pyg/FeatureStore :pyg/GraphStore]
+   :rdfs/seeAlso    "https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.data.HeteroData.html#torch_geometric.data.HeteroData"})
+
+(def Batch
+  "A data object describing a batch of graphs as one big
+  (disconnected) graph. Inherits from :pyg/Data or :pyg/HeteroData. In
+  addition, single graphs can be identified via the assignment vector
+  batch, which maps each node to its respective graph identifier."
+  {:db/ident        :pyg/Batch
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf {:owl/unionOf [:pyg/Data :pyg/HeteroData]
+                     :rdf/type    :owl/Class}
+   :rdfs/seeAlso    "https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.data.Batch.html#torch_geometric.data.Batch"})
+
+(def TemporalData
+  "A data object composed by a stream of events describing a temporal
+  graph. The TemporalData object can hold a list of events (that can
+  be understood as temporal edges in a graph) with structured
+  messages. An event is composed by a source node, a destination node,
+  a timestamp and a message. Any Continuous-Time Dynamic Graph (CTDG)
+  can be represented with these four values.
+
+  In general, TemporalData tries to mimic the behavior of a regular
+  Python dictionary. In addition, it provides useful functionality for
+  analyzing graph structures, and provides basic PyTorch tensor
+  functionalities."
+  {:db/ident        :pyg/TemporalData
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :pyg/BaseData
+   :rdfs/seeAlso    "https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.data.TemporalData.html#torch_geometric.data.TemporalData"})
+
+(def Dataset
+  "Dataset base class for creating graph datasets."
+  {:db/ident        :pyg/Dataset,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :torch/Dataset
+   :rdfs/seeAlso    "https://pytorch-geometric.readthedocs.io/en/latest/notes/create_dataset.html"})
+
+(def InMemoryDataset
+  "Dataset base class for creating graph datasets which easily fit
+  into CPU memory."
+  {:db/ident        :pyg/InMemoryDataset,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :pyg/Dataset
+   :rdfs/seeAlso    "https://pytorch-geometric.readthedocs.io/en/latest/tutorial/create_dataset.html#creating-in-memory-datasets"})
+
+(def CastMixin
+  "Abstract base class for mixins."
+  {:db/ident        :pyg/CastMixin
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :py/Object})
+
+(def TensorAttr
+  "Defines the attributes of a FeatureStore tensor. It holds all the
+  parameters necessary to uniquely identify a tensor from the
+  FeatureStore."
+  {:db/ident        :pyg/TensorAttr
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :pyg/CastMixin
+   :rdfs/seeAlso    "https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.data.TensorAttr.html#torch_geometric.data.TensorAttr"})
+
+(def EdgeAttr
+  "Defines the attributes of a GraphStore edge. It holds all the
+  parameters necessary to uniquely identify an edge from the
+  GraphStore.
+
+  Note that the order of the attributes is important; this is the
+  order in which attributes must be provided for indexing
+  calls. GraphStore implementations can define a different ordering by
+  overriding EdgeAttr.__init__()."
+  {:db/ident        :pyg/EdgeAttr
+   :rdf/type        :owl/Class
+   :rdfs/subClassOf :pyg/CastMixin
+   :rdfs/seeAlso    "https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.data.EdgeAttr.html#torch_geometric.data.EdgeAttr"})
+
 ;; Convolutional Layers
 
 (def SimpleConv
@@ -826,42 +943,65 @@
 ;; Pooling Layers
 
 (def ASAPooling
+  "The Adaptive Structure Aware Pooling operator from the `\"ASAP:
+  Adaptive Structure Aware Pooling for Learning Hierarchical Graph
+  Representations\" paper."
   {:db/ident        :pyg/ASAPooling,
-   :rdf/type        :owl/Class   
-   :rdfs/subClassOf :pyg/MessagePassing
-   :rdfs/seeAlso    [""
-                     ""]})
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1911.07979"]})
 
 (def EdgePooling
-  {:db/ident        :pyg/EdgePooling, :rdf/type :owl/Class   
-   :rdfs/subClassOf :pyg/MessagePassing
-   :rdfs/seeAlso    [""
-                     ""]})
+  "The edge pooling operator from the `\"Towards Graph Pooling by Edge
+  Contraction\" and `\"Edge Contraction Pooling for Graph Neural
+  Networks\" papers."
+  {:db/ident        :pyg/EdgePooling,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://graphreason.github.io/papers/17.pdf"
+                     "https://arxiv.org/abs/1905.10990"]})
 
 (def MemPooling
-  {:db/ident        :pyg/MemPooling, :rdf/type :owl/Class   
-   :rdfs/subClassOf :pyg/MessagePassing
-   :rdfs/seeAlso    [""
-                     ""]})
+  "Memory based pooling layer from `\"Memory-Based Graph Networks\"
+  paper, which learns a coarsened graph representation based on soft
+  cluster assignments."
+  {:db/ident        :pyg/MemPooling,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2002.09518"]})
+
 
 (def PANPooling
-  {:db/ident        :pyg/PANPooling, :rdf/type :owl/Class   
-   :rdfs/subClassOf :pyg/MessagePassing
-   :rdfs/seeAlso    [""
-                     ""]})
+  "The path integral based pooling operator from the `\"Path Integral
+  Based Convolution and Pooling for Graph Neural Networks\" paper.
+  PAN pooling performs top `k` pooling where global node importance is
+  measured based on node features and the MET matrix."
+  {:db/ident        :pyg/PANPooling,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2006.16811"]})
 
 (def SAGPooling
-  {:db/ident        :pyg/SAGPooling, :rdf/type :owl/Class   
-   :rdfs/subClassOf :pyg/MessagePassing
-   :rdfs/seeAlso    [""
-                     ""]})
+  "The self-attention pooling operator from the `\"Self-Attention
+  Graph Pooling\" and `\"Understanding Attention and Generalization in
+  Graph Neural Networks\" papers."
+  {:db/ident        :pyg/SAGPooling,
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1904.08082"
+                     "https://arxiv.org/abs/1905.02850"]})
+
 
 (def TopKPooling
+  "TopK pooling operator from the `\"Graph U-Nets\", `\"Towards Sparse
+  Hierarchical Graph Classifiers\" and `\"Understanding Attention and
+  Generalization in Graph Neural Networks\" papers."
   {:db/ident        :pyg/TopKPooling,
-   :rdf/type        :owl/Class   
-   :rdfs/subClassOf :pyg/MessagePassing
-   :rdfs/seeAlso    [""
-                     ""]})
+   :rdf/type        :owl/Class,
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1905.05178"
+                     "https://arxiv.org/abs/1811.01287"
+                     "https://arxiv.org/abs/1905.02850"],})
 
 ;; Models
 
@@ -890,7 +1030,10 @@
    :rdfs/seeAlso    "https://arxiv.org/abs/1802.04407"})
 
 (def AttentiveFP
-  "The Attentive FP model for molecular representation learning from thePushing the Boundaries of Molecular Representation for Drug Discovery with the Graph Attention Mechanism` paper, based on graph attention mechanisms."
+  "The Attentive FP model for molecular representation learning from
+  the `Pushing the Boundaries of Molecular Representation for Drug
+  Discovery with the Graph Attention Mechanism` paper, based on graph
+  attention mechanisms."
   {:db/ident        :pyg/AttentiveFP,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :torch/Module
@@ -899,54 +1042,63 @@
 (def CorrectAndSmooth
   "The correct and smooth (C&S) post-processing model from the
   `\"Combining Label Propagation And Simple Models Out-performs Graph
-  Neural Networks\" <https://arxiv.org/abs/2010.13993> paper,
-  where soft predictions :math:`\\mathbf{Z}` (obtained from a simple
-  base predictor) are first corrected based on ground-truth
-  training label information :math:`\\mathbf{Y}` and residual
-  propagation."
+  Neural Networks\" paper."
   {:db/ident        :pyg/CorrectAndSmooth,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2010.13993"]})
 
 (def DeepGCNLayer
-  "The skip connection operations from the `\"DeepGCNs: Can GCNs Go
-  as Deep as CNNs?\" <https://arxiv.org/abs/1904.03751> and `\"All
-  You Need to Train Deeper GCNs\"
-  <https://arxiv.org/abs/2006.07739> papers. The implemented skip
-  connections includes the pre-activation residual connection
-  (:obj:`\"res+\"`), the residual connection (:obj:`\"res\"`), the
-  dense connection (:obj:`\"dense\"`) and no connections
-  (:obj:`\"plain\"`)."
+  "The skip connection operations from the `\"DeepGCNs: Can GCNs Go as
+  Deep as CNNs?\" and `\"All You Need to Train Deeper GCNs\"
+  papers. The implemented skip connections includes the pre-activation
+  residual connection (`\"res+\"`), the residual connection
+  (`\"res\"`), the dense connection (`\"dense\"`) and no connections
+  (`\"plain\"`)."
   {:db/ident        :pyg/DeepGCNLayer,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1904.03751"
+                     "https://arxiv.org/abs/2006.07739"]})
 
 (def DeepGraphInfomax
-  "The Deep Graph Infomax model from the \"Deep Graph Infomax\" <https://arxiv.org/abs/1809.10341> paper based on user-defined encoder and summary model :math:`\\mathcal{E}`    and :math:`\\mathcal{R}` respectively, and a corruption function    :math:`\\mathcal{C}`."
+  "The Deep Graph Infomax model from the \"Deep Graph Infomax\" paper."
   {:db/ident        :pyg/DeepGraphInfomax,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1809.10341"]})
 
 (def DimeNet
-  "The directional message passing neural network (DimeNet) from the \"Directional Message Passing for Molecular Graphs\"    <https://arxiv.org/abs/2003.03123> paper.    DimeNet transforms messages based on the angle between them in a    rotation-equivariant fashion."
+  "The directional message passing neural network (DimeNet) from the
+  \"Directional Message Passing for Molecular Graphs\" paper. DimeNet
+  transforms messages based on the angle between them in a
+  rotation-equivariant fashion."
   {:db/ident        :pyg/DimeNet,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2003.03123"]})
 
 (def DimeNetPlusPlus
-  "The DimeNet++ from the `\"Fast and Uncertainty-Aware    Directional Message Passing for Non-Equilibrium Molecules\"    <https://arxiv.org/abs/2011.14115> paper."
+  "The DimeNet++ from the `\"Fast and Uncertainty-Aware Directional
+  Message Passing for Non-Equilibrium Molecules\" paper."
   {:db/ident        :pyg/DimeNetPlusPlus,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/DimeNet})
+   :rdfs/subClassOf :pyg/DimeNet
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2011.14115"]})
 
 (def EdgeCNN
-  "The Graph Neural Network from the `\"Dynamic Graph CNN for Learning on    Point Clouds\" <https://arxiv.org/abs/1801.07829> paper, using the    :class:`~torch_geometric.nn.conv.EdgeConv` operator for message passing."
+  "The Graph Neural Network from the `\"Dynamic Graph CNN for Learning
+  on Point Clouds\" paper, using the class:`:pyg/EdgeConv` operator
+  for message passing."
   {:db/ident        :pyg/EdgeCNN,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/BasicGNN})
+   :rdfs/subClassOf :pyg/BasicGNN
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1801.07829"]})
 
 (def Explainer
-  "An abstract class for integrating explainability into Graph Neural    Networks.    It also provides general visualization methods for graph attributions."
+  "An abstract class for integrating explainability into Graph Neural
+  Networks.  It also provides general visualization methods for graph
+  attributions."
   {:db/ident        :pyg/Explainer,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :torch/Module})
@@ -961,34 +1113,51 @@
    :rdfs/seeAlso    "https://arxiv.org/abs/1611.07308"})
 
 (def GAT
-  "The Graph Neural Network from `\"Graph Attention Networks\"    <https://arxiv.org/abs/1710.10903> or `\"How Attentive are Graph Attention    Networks?\" <https://arxiv.org/abs/2105.14491> papers, using the    :class:`~torch_geometric.nn.GATConv` or    :class:`~torch_geometric.nn.GATv2Conv` operator for message passing,    respectively."
+  "The Graph Neural Network from `\"Graph Attention Networks\" or
+  `\"How Attentive are Graph Attention Networks?\" papers, using the
+  class:`:pyg/GATConv` or class:`:pyg/GATv2Conv` operator for message
+  passing, respectively."
   {:db/ident        :pyg/GAT,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/BasicGNN})
+   :rdfs/subClassOf :pyg/BasicGNN
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1710.10903"
+                     "https://arxiv.org/abs/2105.14491"]})
 
 (def GCN
-  "The Graph Neural Network from the `\"Semi-supervised    Classification with Graph Convolutional Networks\"    <https://arxiv.org/abs/1609.02907> paper, using the    :class:`~torch_geometric.nn.conv.GCNConv` operator for message passing."
+  "The Graph Neural Network from the `\"Semi-supervised Classification
+  with Graph Convolutional Networks\" paper, using the
+  class:`:pyg/GCNConv` operator for message passing."
   {:db/ident        :pyg/GCN,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/BasicGNN})
+   :rdfs/subClassOf :pyg/BasicGNN
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1609.02907"]})
 
 (def GIN
-  "The Graph Neural Network from the `\"How Powerful are Graph Neural    Networks?\" <https://arxiv.org/abs/1810.00826> paper, using the    :class:`~torch_geometric.nn.GINConv` operator for message passing."
+  "The Graph Neural Network from the `\"How Powerful are Graph Neural
+  Networks?\" paper, using the class:`:pyg/GINConv` operator for
+  message passing."
   {:db/ident        :pyg/GIN,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/BasicGNN})
+   :rdfs/subClassOf :pyg/BasicGNN
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1810.00826"]})
 
 (def GraphSAGE
-  "The Graph Neural Network from the `\"Inductive Representation Learning    on Large Graphs\" <https://arxiv.org/abs/1706.02216> paper, using the    :class:`~torch_geometric.nn.SAGEConv` operator for message passing."
+  "The Graph Neural Network from the `\"Inductive Representation
+  Learning on Large Graphs\" paper, using the class:`:pyg/SAGEConv`
+  operator for message passing."
   {:db/ident        :pyg/GraphSAGE,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/BasicGNN})
+   :rdfs/subClassOf :pyg/BasicGNN
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1706.02216"]})
 
 (def GraphUNet
-  "The Graph U-Net model from the `\"Graph U-Nets\"    <https://arxiv.org/abs/1905.05178> paper which implements a U-Net like    architecture with graph pooling and unpooling operations."
+  "The Graph U-Net model from the `\"Graph U-Nets\" paper which
+  implements a U-Net like architecture with graph pooling and
+  unpooling operations."
   {:db/ident        :pyg/GraphUNet,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1905.05178"]})
 
 (def InvertibleModule
   "An abstract base class for implementing invertible modules."
@@ -997,109 +1166,157 @@
    :rdfs/subClassOf :torch/Module})
 
 (def GroupAddRev
-  "The Grouped Reversible GNN module from the `\"Graph Neural Networks with    1000 Layers\" <https://arxiv.org/abs/2106.07476> paper.    This module enables training of arbitary deep GNNs with a memory complexity    independent of the number of layers."
+  "The Grouped Reversible GNN module from the `\"Graph Neural Networks
+  with 1000 Layers\" paper. This module enables training of arbitary
+  deep GNNs with a memory complexity independent of the number of
+  layers."
   {:db/ident        :pyg/GroupAddRev,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/InvertibleModule})
+   :rdfs/subClassOf :pyg/InvertibleModule
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2106.07476"]})
 
 (def InnerProductDecoder
-  "The inner product decoder from the `\"Variational Graph Auto-Encoders\"    <https://arxiv.org/abs/1611.07308> paper"
+  "The inner product decoder from the `\"Variational Graph
+  Auto-Encoders\" paper."
   {:db/ident        :pyg/InnerProductDecoder,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1611.07308"]})
 
 (def JumpingKnowledge
-  "The Jumping Knowledge layer aggregation module from the \"Representation Learning on Graphs with Jumping Knowledge Networks\"    <https://arxiv.org/abs/1806.03536> paper based on either    **concatenation** (:obj:`\"cat\"`)"
+  "The Jumping Knowledge layer aggregation module from the
+  \"Representation Learning on Graphs with Jumping Knowledge
+  Networks\" paper."
   {:db/ident        :pyg/JumpingKnowledge,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1806.03536"]})
 
 (def LINKX
-  "The LINKX model from the `\"Large Scale Learning on Non-Homophilous    Graphs: New Benchmarks and Strong Simple Methods\"    <https://arxiv.org/abs/2110.14446> paper"
+  "The LINKX model from the `\"Large Scale Learning on Non-Homophilous
+  Graphs: New Benchmarks and Strong Simple Methods\" paper."
   {:db/ident        :pyg/LINKX,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2110.14446"]})
 
 (def LabelPropagation
-  "The label propagation operator from the `\"Learning from Labeled and    Unlabeled Datawith Label Propagation\"    <http://mlg.eng.cam.ac.uk/zoubin/papers/CMU-CALD-02-107.pdf> paper"
+  "The label propagation operator from the `\"Learning from Labeled
+  and Unlabeled Data with Label Propagation\" paper."
   {:db/ident        :pyg/LabelPropagation,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    ["http://mlg.eng.cam.ac.uk/zoubin/papers/CMU-CALD-02-107.pdf"]})
 
 (def LightGCN
-  "The LightGCN model from the `\"LightGCN: Simplifying and Powering    Graph Convolution Network for Recommendation\"    <https://arxiv.org/abs/2002.02126> paper."
+  "The LightGCN model from the `\"LightGCN: Simplifying and Powering
+  Graph Convolution Network for Recommendation\" paper."
   {:db/ident        :pyg/LightGCN,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2002.02126"]})
 
 (def MLP
-  "A Multi-Layer Perception (MLP) model.    There exists two ways to instantiate an :class:`MLP`:"
+  "A Multi-Layer Perception (MLP) model."
   {:db/ident        :pyg/MLP,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :torch/Module})
 
 (def MaskLabel
-  "The label embedding and masking layer from the `\"Masked Label    Prediction: Unified Message Passing Model for Semi-Supervised    Classification\" <https://arxiv.org/abs/2009.03509> paper."
+  "The label embedding and masking layer from the `\"Masked Label
+  Prediction: Unified Message Passing Model for Semi-Supervised
+  Classification\" paper."
   {:db/ident        :pyg/MaskLabel,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2009.03509"]})
 
 (def MetaPath2Vec
-  "The MetaPath2Vec model from the `\"metapath2vec: Scalable Representation    Learning for Heterogeneous Networks\"    <https://ericdongyx.github.io/papers/    KDD17-dong-chawla-swami-metapath2vec.pdf> paper where random walks based    on a given :obj:`metapath` are sampled in a heterogeneous graph, and node    embeddings are learned via negative sampling optimization."
+  "The MetaPath2Vec model from the `\"metapath2vec: Scalable
+  Representation Learning for Heterogeneous Networks\" paper where
+  random walks based a given `metapath` are sampled in a heterogeneous
+  graph, and node embeddings are learned via negative sampling
+  optimization."
   {:db/ident        :pyg/MetaPath2Vec,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://ericdongyx.github.io/papers/KDD17-dong-chawla-swami-metapath2vec.pdf"]})
 
 (def Node2Vec
-  "The Node2Vec model from the \"node2vec: Scalable Feature Learning for Networks\"    <https://arxiv.org/abs/1607.00653> paper where random walks of    length :obj:`walk_length` are sampled in a given graph, and node embeddings    are learned via negative sampling optimization."
+  "The Node2Vec model from the \"node2vec: Scalable Feature Learning
+  for Networks\" paper where random walks of length `walk_length` are
+  sampled in a given graph, and node embeddings are learned via
+  negative sampling optimization."
   {:db/ident        :pyg/Node2Vec,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1607.00653"]})
 
 (def PNA
-  "The Graph Neural Network from the `\"Principal Neighbourhood Aggregation    for Graph Nets\" <https://arxiv.org/abs/2004.05718> paper, using the    :class:`~torch_geometric.nn.conv.PNAConv` operator for message passing."
+  "The Graph Neural Network from the `\"Principal Neighbourhood
+  Aggregation for Graph Nets\" paper, using the class:`:pyg/PNAConv`
+  operator for message passing."
   {:db/ident        :pyg/PNA,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/BasicGNN})
+   :rdfs/subClassOf :pyg/BasicGNN
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2004.05718"]})
 
 (def RECT_L
-  "The RECT model, *i.e.* its supervised RECT-L part, from the \"Network Embedding with Completely-imbalanced Labels\"    <https://arxiv.org/abs/2007.03545> paper.    In particular, a GCN model is trained that reconstructs semantic class    knowledge."
+  "The RECT model, *i.e.* its supervised RECT-L part, from the
+  \"Network Embedding with Completely-imbalanced Labels\" paper.  In
+  particular, a GCN model is trained that reconstructs semantic class
+  knowledge."
   {:db/ident        :pyg/RECT_L,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2007.03545"]})
 
 (def RENet
-  "The Recurrent Event Network model from the `\"Recurrent Event Network    for Reasoning over Temporal Knowledge Graphs\"    <https://arxiv.org/abs/1904.05530> paper"
+  "The Recurrent Event Network model from the `\"Recurrent Event
+  Network for Reasoning over Temporal Knowledge Graphs\" paper."
   {:db/ident        :pyg/RENet,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1904.05530"]})
 
 (def SchNet
-  "The continuous-filter convolutional neural network SchNet from the \"SchNet: A Continuous-filter Convolutional Neural Network for Modeling    Quantum Interactions\" <https://arxiv.org/abs/1706.08566> paper that uses    the interactions blocks of the form"
+  "The continuous-filter convolutional neural network SchNet from the
+  \"SchNet: A Continuous-filter Convolutional Neural Network for
+  Modeling Quantum Interactions\" paper."
   {:db/ident        :pyg/SchNet,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1706.08566"]})
 
 (def SignedGCN
-  "The signed graph convolutional network model from the `\"Signed Graph    Convolutional Network\" <https://arxiv.org/abs/1808.06354> paper.    Internally, this module uses the    :class:`torch_geometric.nn.conv.SignedConv` operator."
+  "The signed graph convolutional network model from the `\"Signed
+  Graph Convolutional Network\" <> paper.  Internally, this module
+  uses the class:`:pyg/SignedConv` operator."
   {:db/ident        :pyg/SignedGCN,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1808.06354"]})
 
 (def TGNMemory
-  "The Temporal Graph Network (TGN) memory model from the \"Temporal Graph Networks for Deep Learning on Dynamic Graphs\"    <https://arxiv.org/abs/2006.10637> paper."
+  "The Temporal Graph Network (TGN) memory model from the \"Temporal
+  Graph Networks for Deep Learning on Dynamic Graphs\" paper."
   {:db/ident        :pyg/TGNMemory,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2006.10637"]})
 
 (def VGAE
-  "The Variational Graph Auto-Encoder model from the \"Variational Graph Auto-Encoders\" <https://arxiv.org/abs/1611.07308> paper."
+  "The Variational Graph Auto-Encoder model from the \"Variational
+  Graph Auto-Encoders\" paper."
   {:db/ident        :pyg/VGAE,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/GAE})
+   :rdfs/subClassOf :pyg/GAE
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1611.07308"]})
 
 (def APPNP
-  "The approximate personalized propagation of neural predictions layer from the “Predict then Propagate: Graph Neural Networks meet Personalized PageRank” paper."
+  "The approximate personalized propagation of neural predictions
+  layer from the “Predict then Propagate: Graph Neural Networks meet
+  Personalized PageRank” paper."
   {:db/ident        :pyg/APPNP,
    :rdf/type        :owl/Class   
    :rdfs/subClassOf :pyg/MessagePassing
@@ -1112,7 +1329,8 @@
   paper."
   {:db/ident        :pyg/MetaLayer,
    :rdf/type        :owl/Class   
-   :rdfs/subClassOf :pyg/Module})
+   :rdfs/subClassOf :pyg/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1806.01261"]})
 
 ;; KGE Models
 
@@ -1124,7 +1342,8 @@
    :rdfs/seeAlso    "https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.nn.kge.KGEModel.html#torch_geometric.nn.kge.KGEModel"})
 
 (def TransE
-  "The TransE model from the “Translating Embeddings for Modeling Multi-Relational Data” paper."
+  "The TransE model from the “Translating Embeddings for Modeling
+  Multi-Relational Data” paper."
   {:db/ident        :pyg/KGEModel
    :rdf/type        :owl/Class
    :rdfs/subClassOf :pyg/KGEModel
@@ -1134,7 +1353,8 @@
 ;; Encodings
 
 (def PositionalEncoding
-  "The positional encoding scheme from the “Attention Is All You Need” paper"
+  "The positional encoding scheme from the “Attention Is All You Need”
+  paper."
   {:db/ident        :pyg/PositionalEncoding,
    :rdf/type        :owl/Class   
    :rdfs/subClassOf :torch/Module
@@ -1156,24 +1376,28 @@
 ;; Dense Convolutional Layers
 
 (def DenseGCNConv
+  "See `:pyg/GCNConv`."
   {:db/ident        :pyg/DenseGCNConv,
    :rdf/type        :owl/Class   
    :rdfs/subClassOf :torch/Module
    :rdfs/seeAlso    :pyg/GCNConv})
 
 (def DenseGINConv
+  "See `:pyg/GINConv`."
   {:db/ident        :pyg/DenseGINConv,
    :rdf/type        :owl/Class   
    :rdfs/subClassOf :torch/Module
    :rdfs/seeAlso    :pyg/GINConv})
 
 (def DenseGraphConv
+  "See `:pyg/GraphConv`."
   {:db/ident        :pyg/DenseGraphConv,
    :rdf/type        :owl/Class   
    :rdfs/subClassOf :torch/Module
    :rdfs/seeAlso    :pyg/GraphConv})
 
 (def DenseSAGEConv
+  "See `:pyg/SAGEConv`."
   {:db/ident        :pyg/DenseSAGEConv,
    :rdf/type        :owl/Class   
    :rdfs/subClassOf :torch/Module
@@ -1182,7 +1406,8 @@
 ;; Dense Pooling Layers
 
 (def DMoNPooling
-  "The spectral modularity pooling operator from the “Graph Clustering with Graph Neural Networks” paper"
+  "The spectral modularity pooling operator from the “Graph Clustering
+  with Graph Neural Networks” paper"
   {:db/ident        :pyg/DMoNPooling,
    :rdf/type        :owl/Class   
    :rdfs/subClassOf :pyg/MessagePassing
@@ -1198,11 +1423,25 @@
   Module. Transformer works entirely symbolically."
   {:db/ident        :pyg/Transformer
    :rdf/type        :owl/Class
-   :rdfs/subClassOf :py/Object})
+   :rdfs/subClassOf :py/Object
+   :rdfs/seeAlso    "https://pytorch-geometric.readthedocs.io/en/latest/modules/nn.html#torch_geometric.nn.fx.Transformer"})
 
 ;; DataParallel Layers
 
 (def DataParallel
+  "Implements data parallelism at the module level.
+
+  This container parallelizes the application of the given module by
+  splitting a list of :pyg/Data objects and copying them as :pyg/Batch
+  objects to each device. In the forward pass, the module is
+  replicated on each device, and each replica handles a portion of the
+  input. During the backwards pass, gradients from each replica are
+  summed into the original module.
+
+  The batch size should be larger than the number of GPUs used.
+
+  The parallelized module must have its parameters and buffers on
+  device_ids[0]."
   {:db/ident        :pyg/DataParallel
    :rdf/type        :owl/Class
    :rdfs/subClassOf :torch/DataParallel})
