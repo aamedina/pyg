@@ -743,58 +743,85 @@
 ;; Normalization Layers
 
 (def BatchNorm
-  "Applies batch normalization over a batch of node features as described    in the `\"Batch Normalization: Accelerating Deep Network Training by    Reducing Internal Covariate Shift\" <https://arxiv.org/abs/1502.03167> paper"
+  "Applies batch normalization over a batch of node features as
+  described in the `\"Batch Normalization: Accelerating Deep Network
+  Training by Reducing Internal Covariate Shift\" paper."
   {:db/ident        :pyg/BatchNorm,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1502.03167"]})
 
 (def DiffGroupNorm
-  "The differentiable group normalization layer from the `\"Towards Deeper    Graph Neural Networks with Differentiable Group Normalization\"    <https://arxiv.org/abs/2006.06972> paper, which normalizes node features    group-wise via a learnable soft cluster assignment"
+  "The differentiable group normalization layer from the `\"Towards
+  Deeper Graph Neural Networks with Differentiable Group
+  Normalization\" paper, which normalizes node features group-wise via
+  a learnable soft cluster assignment."
   {:db/ident        :pyg/DiffGroupNorm,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2006.06972"]})
 
 (def GraphNorm
-  "Applies graph normalization over individual graphs as described in the \"GraphNorm: A Principled Approach to Accelerating Graph Neural Network    Training\" <https://arxiv.org/abs/2009.03294> paper"
+  "Applies graph normalization over individual graphs as described in
+  the \"GraphNorm: A Principled Approach to Accelerating Graph Neural
+  Network Training\" paper."
   {:db/ident        :pyg/GraphNorm,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2009.03294"]})
 
 (def GraphSizeNorm
-  "Applies Graph Size Normalization over each individual graph in a batch    of node features as described in the \"Benchmarking Graph Neural Networks\" <https://arxiv.org/abs/2003.00982> paper"
+  "Applies Graph Size Normalization over each individual graph in a
+  batch of node features as described in the \"Benchmarking Graph
+  Neural Networks\" paper."
   {:db/ident        :pyg/GraphSizeNorm,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2003.00982"]})
 
 (def InstanceNorm
-  "Applies instance normalization over each individual example in a batch    of node features as described in the `\"Instance Normalization: The Missing    Ingredient for Fast Stylization\" <https://arxiv.org/abs/1607.08022> paper"
+  "Applies instance normalization over each individual example in a
+  batch of node features as described in the `\"Instance
+  Normalization: The Missing Ingredient for Fast Stylization\" paper."
   {:db/ident        :pyg/InstanceNorm,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1607.08022"]})
 
 (def LayerNorm
-  "Applies layer normalization over each individual example in a batch    of node features as described in the `\"Layer Normalization\"    <https://arxiv.org/abs/1607.06450> paper"
+  "Applies layer normalization over each individual example in a batch
+  of node features as described in the `\"Layer Normalization\"
+  paper."
   {:db/ident        :pyg/LayerNorm,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1607.06450"]})
 
 (def MeanSubtractionNorm
-  "Applies layer normalization by subtracting the mean from the inputs    as described in the  `\"Revisiting 'Over-smoothing' in Deep GCNs\"    <https://arxiv.org/pdf/2003.13663.pdf> paper"
+  "Applies layer normalization by subtracting the mean from the inputs
+  as described in the `\"Revisiting 'Over-smoothing' in Deep GCNs\"
+  paper."
   {:db/ident        :pyg/MeanSubtractionNorm,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/pdf/2003.13663.pdf"]})
 
 (def MessageNorm
-  "Applies message normalization over the aggregated messages as described    in the `\"DeeperGCNs: All You Need to Train Deeper GCNs\"    <https://arxiv.org/abs/2006.07739> paper"
+  "Applies message normalization over the aggregated messages as
+  described in the `\"DeeperGCNs: All You Need to Train Deeper GCNs\"
+  paper."
   {:db/ident        :pyg/MessageNorm,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2006.07739"]})
 
 (def PairNorm
-  "Applies pair normalization over node features as described in the \"PairNorm: Tackling Oversmoothing in GNNs\"    <https://arxiv.org/abs/1909.12223> paper"
+  "Applies pair normalization over node features as described in the
+  \"PairNorm: Tackling Oversmoothing in GNNs\" paper."
   {:db/ident        :pyg/PairNorm,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1909.12223"]})
 
 ;; Pooling Layers
 
