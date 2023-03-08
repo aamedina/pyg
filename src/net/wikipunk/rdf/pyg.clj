@@ -326,166 +326,240 @@
    :rdfs/seeAlso    "https://arxiv.org/abs/2003.01332"})
 
 (def HeteroConv
-  "A generic wrapper for computing graph convolution on heterogeneous    graphs.    This layer will pass messages from source nodes to target nodes based on    the bipartite GNN layer given for a specific edge type.    If multiple relations point to the same destination, their results will be    aggregated according to :attr:`aggr`.    In comparison to :meth:`torch_geometric.nn.to_hetero`, this layer is    especially useful if you want to apply different message passing modules    for different edge types."
+  "A generic wrapper for computing graph convolution on heterogeneous
+  graphs.  This layer will pass messages from source nodes to target
+  nodes based on the bipartite GNN layer given for a specific edge
+  type."
   {:db/ident        :pyg/HeteroConv,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :torch/Module})
 
 (def HypergraphConv
-  "The hypergraph convolutional operator from the `\"Hypergraph Convolution    and Hypergraph Attention\" <https://arxiv.org/abs/1901.08150> paper"
+  "The hypergraph convolutional operator from the `\"Hypergraph
+  Convolution and Hypergraph Attention\" paper."
   {:db/ident        :pyg/HypergraphConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/1901.08150"})
 
 (def LEConv
-  "The local extremum graph neural network operator from the \"ASAP: Adaptive Structure Aware Pooling for Learning Hierarchical Graph    Representations\" <https://arxiv.org/abs/1911.07979> paper, which finds    the importance of nodes with respect to their neighbors using the    difference operator:"
+  "The local extremum graph neural network operator from the \"ASAP:
+  Adaptive Structure Aware Pooling for Learning Hierarchical Graph
+  Representations\" paper, which finds the importance of nodes with
+  respect to their neighbors using the difference operator."
   {:db/ident        :pyg/LEConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/1911.07979"})
 
 (def LGConv
-  "The Light Graph Convolution (LGC) operator from the `\"LightGCN:    Simplifying and Powering Graph Convolution Network for Recommendation\"    <https://arxiv.org/abs/2002.02126> paper"
+  "The Light Graph Convolution (LGC) operator from the `\"LightGCN:
+  Simplifying and Powering Graph Convolution Network for
+  Recommendation\" paper."
   {:db/ident        :pyg/LGConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/2002.02126"})
 
 (def MFConv
-  "The graph neural network operator from the \"Convolutional Networks on Graphs for Learning Molecular Fingerprints\"    <https://arxiv.org/abs/1509.09292> paper"
+  "The graph neural network operator from the \"Convolutional Networks
+  on Graphs for Learning Molecular Fingerprints\" paper."
   {:db/ident        :pyg/MFConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/1509.09292"})
 
 (def NNConv
-  "The continuous kernel-based convolutional operator from the \"Neural Message Passing for Quantum Chemistry\"    <https://arxiv.org/abs/1704.01212> paper.    This convolution is also known as the edge-conditioned convolution from the \"Dynamic Edge-Conditioned Filters in Convolutional Neural Networks on    Graphs\" <https://arxiv.org/abs/1704.02901> paper (see    :class:`torch_geometric.nn.conv.ECConv` for an alias):"
+  "The continuous kernel-based convolutional operator from the
+  \"Neural Message Passing for Quantum Chemistry\" paper.  This
+  convolution is also known as the edge-conditioned convolution from
+  the \"Dynamic Edge-Conditioned Filters in Convolutional Neural
+  Networks on Graphs\" paper (see class:`:pyg/ECConv` for an alias)."
   {:db/ident        :pyg/NNConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1704.01212"
+                     "https://arxiv.org/abs/1704.02901"]})
 
 (def PANConv
-  "The path integral based convolutional operator from the \"Path Integral Based Convolution and Pooling for Graph Neural Networks\"    <https://arxiv.org/abs/2006.16811> paper"
+  "The path integral based convolutional operator from the \"Path
+  Integral Based Convolution and Pooling for Graph Neural Networks\"
+  paper."
   {:db/ident        :pyg/PANConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/2006.16811"})
 
 (def PDNConv
-  "The pathfinder discovery network convolutional operator from the \"Pathfinder Discovery Networks for Neural Message Passing\"    <https://arxiv.org/pdf/2010.12878.pdf> paper"
+  "The pathfinder discovery network convolutional operator from the
+  \"Pathfinder Discovery Networks for Neural Message Passing\" paper."
   {:db/ident        :pyg/PDNConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/pdf/2010.12878.pdf"})
 
 (def PNAConv
-  "The Principal Neighbourhood Aggregation graph convolution operator    from the `\"Principal Neighbourhood Aggregation for Graph Nets\"    <https://arxiv.org/abs/2004.05718> paper"
+  "The Principal Neighbourhood Aggregation graph convolution operator
+  from the `\"Principal Neighbourhood Aggregation for Graph Nets\"
+  paper."
   {:db/ident        :pyg/PNAConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/2004.05718"})
 
 (def PPFConv
-  "The PPFNet operator from the `\"PPFNet: Global Context Aware Local    Features for Robust 3D Point Matching\" <https://arxiv.org/abs/1802.02669> paper"
+  "The PPFNet operator from the `\"PPFNet: Global Context Aware Local
+  Features for Robust 3D Point Matching\" paper."
   {:db/ident        :pyg/PPFConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/1802.02669"})
 
 (def PointConv
-  "The PointNet set layer from the `\"PointNet: Deep Learning on Point Sets    for 3D Classification and Segmentation\"    <https://arxiv.org/abs/1612.00593> and `\"PointNet++: Deep Hierarchical    Feature Learning on Point Sets in a Metric Space\"    <https://arxiv.org/abs/1706.02413> papers"
+  "The PointNet set layer from the `\"PointNet: Deep Learning on Point
+  Sets for 3D Classification and Segmentation\" and `\"PointNet++:
+  Deep Hierarchical Feature Learning on Point Sets in a Metric Space\"
+  papers."
   {:db/ident        :pyg/PointConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1612.00593"
+                     "https://arxiv.org/abs/1706.02413"]})
 
 (def PointNetConv
-  "The PointNet set layer from the `\"PointNet: Deep Learning on Point Sets    for 3D Classification and Segmentation\"    <https://arxiv.org/abs/1612.00593> and `\"PointNet++: Deep Hierarchical    Feature Learning on Point Sets in a Metric Space\"    <https://arxiv.org/abs/1706.02413> papers"
+  "The PointNet set layer from the `\"PointNet: Deep Learning on Point
+  Sets for 3D Classification and Segmentation\" and `\"PointNet++:
+  Deep Hierarchical Feature Learning on Point Sets in a Metric Space\"
+  papers."
   {:db/ident        :pyg/PointNetConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    ["https://arxiv.org/abs/1612.00593"
+                     "https://arxiv.org/abs/1706.02413"]})
 
 (def PointTransformerConv
-  "The Point Transformer layer from the `\"Point Transformer\"    <https://arxiv.org/abs/2012.09164> paper"
+  "The Point Transformer layer from the `\"Point Transformer\" paper."
   {:db/ident        :pyg/PointTransformerConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/2012.09164"})
 
 (def RGATConv
-  "The relational graph attentional operator from the `\"Relational Graph    Attention Networks\" <https://arxiv.org/abs/1904.05811> paper.    Here, attention logits :math:`\\mathbf{a}^{(r)}_{i,j}` are computed for each    relation type :math:`r` with the help of both query and key kernels, *i.e.*"
+  "The relational graph attentional operator from the `\"Relational
+  Graph Attention Networks\" paper."
   {:db/ident        :pyg/RGATConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/1904.05811"})
 
 (def RGCNConv
-  "The relational graph convolutional operator from the `\"Modeling    Relational Data with Graph Convolutional Networks\"    <https://arxiv.org/abs/1703.06103> paper"
+  "The relational graph convolutional operator from the `\"Modeling
+  Relational Data with Graph Convolutional Networks\" paper."
   {:db/ident        :pyg/RGCNConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/1703.06103"})
 
 (def ResGatedGraphConv
-  "The residual gated graph convolutional operator from the \"Residual Gated Graph ConvNets\" <https://arxiv.org/abs/1711.07553> paper"
+  "The residual gated graph convolutional operator from the \"Residual
+  Gated Graph ConvNets\" paper."
   {:db/ident        :pyg/ResGatedGraphConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/1711.07553"})
 
 (def SAGEConv
-  "The GraphSAGE operator from the `\"Inductive Representation Learning on    Large Graphs\" <https://arxiv.org/abs/1706.02216> paper"
+  "The GraphSAGE operator from the `\"Inductive Representation
+  Learning on Large Graphs\" paper."
   {:db/ident        :pyg/SAGEConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/1706.02216"})
 
 (def SGConv
-  "The simple graph convolutional operator from the `\"Simplifying Graph    Convolutional Networks\" <https://arxiv.org/abs/1902.07153> paper"
+  "The simple graph convolutional operator from the `\"Simplifying
+  Graph Convolutional Networks\" paper."
   {:db/ident        :pyg/SGConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/1902.07153"})
 
 (def SSGConv
-  "The simple spectral graph convolutional operator from the \"Simple Spectral Graph Convolution\"    <https://openreview.net/forum?id=CYO5T-YjWZV> paper"
+  "The simple spectral graph convolutional operator from the \"Simple
+  Spectral Graph Convolution\" paper."
   {:db/ident        :pyg/SSGConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://openreview.net/forum?id=CYO5T-YjWZV"})
 
 (def SignedConv
-  "The signed graph convolutional operator from the `\"Signed Graph    Convolutional Network\" <https://arxiv.org/abs/1808.06354> paper"
+  "The signed graph convolutional operator from the `\"Signed Graph
+  Convolutional Network\" paper."
   {:db/ident        :pyg/SignedConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/1808.06354"})
 
 (def SplineConv
-  "The spline-based convolutional operator from the `\"SplineCNN: Fast    Geometric Deep Learning with Continuous B-Spline Kernels\"    <https://arxiv.org/abs/1711.08920> paper"
+  "The spline-based convolutional operator from the `\"SplineCNN: Fast
+  Geometric Deep Learning with Continuous B-Spline Kernels\" paper."
   {:db/ident        :pyg/SplineConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/1711.08920"})
 
 (def SuperGATConv
-  "The self-supervised graph attentional operator from the `\"How to Find    Your Friendly Neighborhood: Graph Attention Design with Self-Supervision\"    <https://openreview.net/forum?id=Wi5KUNlqWty> paper"
+  "The self-supervised graph attentional operator from the `\"How to
+  Find Your Friendly Neighborhood: Graph Attention Design with
+  Self-Supervision\" paper."
   {:db/ident        :pyg/SuperGATConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://openreview.net/forum?id=Wi5KUNlqWty"})
 
 (def TAGConv
-  "The topology adaptive graph convolutional networks operator from the \"Topology Adaptive Graph Convolutional Networks\"    <https://arxiv.org/abs/1710.10370> paper"
+  "The topology adaptive graph convolutional networks operator from
+  the \"Topology Adaptive Graph Convolutional Networks\" paper."
   {:db/ident        :pyg/TAGConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/1710.10370"})
 
 (def TransformerConv
-  "The graph transformer operator from the `\"Masked Label Prediction:    Unified Message Passing Model for Semi-Supervised Classification\"    <https://arxiv.org/abs/2009.03509> paper"
+  "The graph transformer operator from the `\"Masked Label Prediction:
+  Unified Message Passing Model for Semi-Supervised Classification\"
+  paper."
   {:db/ident        :pyg/TransformerConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/2009.03509"})
 
 (def WLConv
-  "The Weisfeiler Lehman operator from the `\"A Reduction of a Graph to a    Canonical Form and an Algebra Arising During this Reduction\"    <https://www.iti.zcu.cz/wl2018/pdf/wl_paper_translation.pdf> paper, which    iteratively refines node colorings:"
+  "The Weisfeiler Lehman operator from the `\"A Reduction of a Graph
+  to a Canonical Form and an Algebra Arising During this Reduction\"
+  paper, which iteratively refines node colorings."
   {:db/ident        :pyg/WLConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    "https://www.iti.zcu.cz/wl2018/pdf/wl_paper_translation.pdf"})
 
 (def WLConvContinuous
-  "The Weisfeiler Lehman operator from the `\"Wasserstein    Weisfeiler-Lehman Graph Kernels\" <https://arxiv.org/abs/1906.01277> paper. Refinement is done though a degree-scaled mean aggregation and    works on nodes with continuous attributes:"
+  "The Weisfeiler Lehman operator from the `\"Wasserstein
+  Weisfeiler-Lehman Graph Kernels\" <> paper. Refinement is done
+  though a degree-scaled mean aggregation and works on nodes with
+  continuous attributes."
   {:db/ident        :pyg/WLConvContinuous,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/MessagePassing})
+   :rdfs/subClassOf :pyg/MessagePassing
+   :rdfs/seeAlso    "https://arxiv.org/abs/1906.01277"})
 
 (def XConv
-  "The convolutional operator on :math:`\\mathcal{X}`-transformed points    from the `\"PointCNN: Convolution On X-Transformed Points\"    <https://arxiv.org/abs/1801.07791> paper"
+  "The convolutional operator on transformed points from the
+  `\"PointCNN: Convolution On X-Transformed Points\" paper."
   {:db/ident        :pyg/XConv,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :torch/Module})
+   :rdfs/subClassOf :torch/Module
+   :rdfs/seeAlso    "https://arxiv.org/abs/1801.07791"})
 
 (def CuGraphSAGEConv
   "The GraphSAGE operator from the “Inductive Representation Learning on Large Graphs” paper."
@@ -510,115 +584,158 @@
    :rdfs/seeAlso    "https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.nn.aggr.Aggregation.html#torch_geometric.nn.aggr.Aggregation"})
 
 (def AttentionalAggregation
-  "The soft attention aggregation layer from the `\"Graph Matching Networks    for Learning the Similarity of Graph Structured Objects\"    <https://arxiv.org/abs/1904.12787> paper"
+  "The soft attention aggregation layer from the `\"Graph Matching
+  Networks for Learning the Similarity of Graph Structured Objects\"
+  paper."
   {:db/ident        :pyg/AttentionalAggregation,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/Aggregation})
+   :rdfs/subClassOf :pyg/Aggregation
+   :rdfs/seeAlso    "https://arxiv.org/abs/1904.12787"})
 
 (def DegreeScalerAggregation
-  "Combines one or more aggregators and transforms its output with one or    more scalers as introduced in the `\"Principal Neighbourhood Aggregation for    Graph Nets\" <https://arxiv.org/abs/2004.05718> paper.    The scalers are normalised by the in-degree of the training set and so must    be provided at time of construction.    See :class:`torch_geometric.nn.conv.PNAConv` for more information."
+  "Combines one or more aggregators and transforms its output with one
+  or more scalers as introduced in the `\"Principal Neighbourhood
+  Aggregation for Graph Nets\" paper.  The scalers are normalised by
+  the in-degree of the training set and so must be provided at time of
+  construction.  See class:`:pyg/PNAConv` for more information."
   {:db/ident        :pyg/DegreeScalerAggregation,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/Aggregation})
+   :rdfs/subClassOf :pyg/Aggregation
+   :rdfs/seeAlso    "https://arxiv.org/abs/2004.05718"})
 
 (def EquilibriumAggregation
-  "The equilibrium aggregation layer from the `\"Equilibrium Aggregation:    Encoding Sets via Optimization\" <https://arxiv.org/abs/2202.12795> paper.    The output of this layer :math:`\\mathbf{y}` is defined implicitly via a    potential function :math:`F(\\mathbf{x}, \\mathbf{y})`, a regularization term    :math:`R(\\mathbf{y})`, and the condition"
+  "The equilibrium aggregation layer from the `\"Equilibrium
+  Aggregation: Encoding Sets via Optimization\" paper."
   {:db/ident        :pyg/EquilibriumAggregation,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/Aggregation})
+   :rdfs/subClassOf :pyg/Aggregation
+   :rdfs/seeAlso    "https://arxiv.org/abs/2202.12795"})
 
 (def GraphMultisetTransformer
-  "The Graph Multiset Transformer pooling operator from the \"Accurate Learning of Graph Representations    with Graph Multiset Pooling\" <https://arxiv.org/abs/2102.11533> paper."
+  "The Graph Multiset Transformer pooling operator from the \"Accurate
+  Learning of Graph Representations with Graph Multiset Pooling\"
+  paper."
   {:db/ident        :pyg/GraphMultisetTransformer,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/Aggregation})
+   :rdfs/subClassOf :pyg/Aggregation
+   :rdfs/seeAlso    "https://arxiv.org/abs/2102.11533"})
 
 (def LSTMAggregation
-  "Performs LSTM-style aggregation in which the elements to aggregate are    interpreted as a sequence, as described in the `\"Inductive Representation    Learning on Large Graphs\" <https://arxiv.org/abs/1706.02216> paper."
+  "Performs LSTM-style aggregation in which the elements to aggregate
+  are interpreted as a sequence, as described in the `\"Inductive
+  Representation Learning on Large Graphs\" paper."
   {:db/ident        :pyg/LSTMAggregation,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/Aggregation})
+   :rdfs/subClassOf :pyg/Aggregation
+   :rdfs/seeAlso    "https://arxiv.org/abs/1706.02216"})
 
 (def MaxAggregation
-  "An aggregation operator that takes the feature-wise maximum across a    set of elements"
+  "An aggregation operator that takes the feature-wise maximum across
+  a set of elements."
   {:db/ident        :pyg/MaxAggregation,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :pyg/Aggregation})
 
 (def MeanAggregation
-  "An aggregation operator that averages features across a set of elements"
+  "An aggregation operator that averages features across a set of
+  elements."
   {:db/ident        :pyg/MeanAggregation,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :pyg/Aggregation})
 
 (def MedianAggregation
-  "An aggregation operator that returns the feature-wise median of a set.    That is, for every feature :math:`d`, it computes"
+  "An aggregation operator that returns the feature-wise median of a
+  set."
   {:db/ident        :pyg/MedianAggregation,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :pyg/QuantileAggregation})
 
 (def MinAggregation
-  "An aggregation operator that takes the feature-wise minimum across a    set of elements"
+  "An aggregation operator that takes the feature-wise minimum across
+  a set of elements."
   {:db/ident        :pyg/MinAggregation,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :pyg/Aggregation})
 
 (def MulAggregation
-  "An aggregation operator that multiples features across a set of    elements"
+  "An aggregation operator that multiples features across a set of
+  elements."
   {:db/ident        :pyg/MulAggregation,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :pyg/Aggregation})
 
 (def MultiAggregation
-  "Performs aggregations with one or more aggregators and combines    aggregated results, as described in the `\"Principal Neighbourhood    Aggregation for Graph Nets\" <https://arxiv.org/abs/2004.05718> and \"Adaptive Filters and Aggregator Fusion for Efficient Graph Convolutions\"    <https://arxiv.org/abs/2104.01481> papers."
+  "Performs aggregations with one or more aggregators and combines
+  aggregated results, as described in the `\"Principal Neighbourhood
+  Aggregation for Graph Nets\" and \"Adaptive Filters and Aggregator
+  Fusion for Efficient Graph Convolutions\" papers."
   {:db/ident        :pyg/MultiAggregation,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/Aggregation})
+   :rdfs/subClassOf :pyg/Aggregation
+   :rdfs/seeAlso    ["https://arxiv.org/abs/2004.05718"
+                     "https://arxiv.org/abs/2104.01481"]})
 
 (def PowerMeanAggregation
-  "The powermean aggregation operator based on a power term, as    described in the `\"DeeperGCN: All You Need to Train Deeper GCNs\"    <https://arxiv.org/abs/2006.07739> paper"
+  "The powermean aggregation operator based on a power term, as
+  described in the `\"DeeperGCN: All You Need to Train Deeper GCNs\"
+  paper."
   {:db/ident        :pyg/PowerMeanAggregation,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/Aggregation})
+   :rdfs/subClassOf :pyg/Aggregation
+   :rdfs/seeAlso    "https://arxiv.org/abs/2006.07739"})
 
 (def QuantileAggregation
-  "An aggregation operator that returns the feature-wise :math:`q`-th    quantile of a set :math:`\\mathcal{X}`. That is, for every feature    :math:`d`, it computes"
+  "An aggregation operator that returns the feature-wise `q`-th
+  quantile of a set X."
   {:db/ident        :pyg/QuantileAggregation,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :pyg/Aggregation})
 
 (def Set2Set
-  "The Set2Set aggregation operator based on iterative content-based    attention, as described in the `\"Order Matters: Sequence to sequence for    Sets\" <https://arxiv.org/abs/1511.06391> paper"
+  "The Set2Set aggregation operator based on iterative content-based
+  attention, as described in the `\"Order Matters: Sequence to
+  sequence for Sets\" paper."
   {:db/ident        :pyg/Set2Set,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/Aggregation})
+   :rdfs/subClassOf :pyg/Aggregation
+   :rdfs/seeAlso    "https://arxiv.org/abs/1511.06391"})
 
 (def SoftmaxAggregation
-  "The softmax aggregation operator based on a temperature term, as    described in the `\"DeeperGCN: All You Need to Train Deeper GCNs\"    <https://arxiv.org/abs/2006.07739> paper"
+  "The softmax aggregation operator based on a temperature term, as
+  described in the `\"DeeperGCN: All You Need to Train Deeper GCNs\"
+  paper."
   {:db/ident        :pyg/SoftmaxAggregation,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/Aggregation})
+   :rdfs/subClassOf :pyg/Aggregation
+   :rdfs/seeAlso    "https://arxiv.org/abs/2006.07739"})
 
 (def SortAggregation
-  "The pooling operator from the `\"An End-to-End Deep Learning    Architecture for Graph Classification\"    <https://www.cse.wustl.edu/~muhan/papers/AAAI_2018_DGCNN.pdf> paper,    where node features are sorted in descending order based on their last    feature channel. The first :math:`k` nodes form the output of the layer."
+  "The pooling operator from the `\"An End-to-End Deep Learning
+  Architecture for Graph Classification\" paper, where node features
+  are sorted in descending order based on their last feature
+  channel. The first `k` nodes form the output of the layer."
   {:db/ident        :pyg/SortAggregation,
    :rdf/type        :owl/Class,
-   :rdfs/subClassOf :pyg/Aggregation})
+   :rdfs/subClassOf :pyg/Aggregation
+   :rdfs/seeAlso    "https://www.cse.wustl.edu/~muhan/papers/AAAI_2018_DGCNN.pdf"})
 
 (def StdAggregation
-  "An aggregation operator that takes the feature-wise standard deviation    across a set of elements"
+  "An aggregation operator that takes the feature-wise standard
+  deviation across a set of elements."
   {:db/ident        :pyg/StdAggregation,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :pyg/Aggregation})
 
 (def SumAggregation
-  "An aggregation operator that sums up features across a set of elements"
+  "An aggregation operator that sums up features across a set of
+  elements."
   {:db/ident        :pyg/SumAggregation,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :pyg/Aggregation})
 
 (def VarAggregation
-  "An aggregation operator that takes the feature-wise variance across a    set of elements"
+  "An aggregation operator that takes the feature-wise variance across
+  a set of elements."
   {:db/ident        :pyg/VarAggregation,
    :rdf/type        :owl/Class,
    :rdfs/subClassOf :pyg/Aggregation})
